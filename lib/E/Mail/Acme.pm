@@ -1,9 +1,9 @@
 use strict;
-use warnings;
+## no critic warnings # let's be 5.00x compatible
 
 package E'Mail::Acme;
 
-$E'Mail::Acme::VERSION = 822;
+$E'Mail::Acme::VERSION = 1123;
 
 my $CRLF = "\x0d\x0a";
 
@@ -439,7 +439,7 @@ E'Mail::Acme - the epitome of simple e-mail handling
 
 =head1 VERSION
 
-version 822
+version 1123
 
 =head1 SYNOPSIS
 
@@ -586,7 +586,7 @@ which program to use by passing it as an argument:
 =head1 THANKS
 
 Thanks to Simon, Simon, Casey, Richard, Dave, Dieter, Meng, Mark, Graham, Tim,
-Yves, David, Eryq and everyone else who has helped form my understand of how
+Yves, David, Eryq and everyone else who has helped form my understanding of how
 e-mail should be handled.
 
 =head1 AUTHOR

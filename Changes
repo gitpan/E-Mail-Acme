@@ -1,4 +1,8 @@
-Revision history for Acme-Lingua-EN-Inflect-Modern
+Revision history for E'Mail-Acme
+
+1123    2007-07-16
+        improve tests
+        documentation tweaks
 
 822     2007-07-13
         first release; CPAN rejoices
