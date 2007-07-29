@@ -1,10 +1,14 @@
 
-use Test::More tests => 22;
+use strict;
+use Test::More tests => 25;
 use E'Mail::Acme;#'
 
 my $e_mail = E'Mail::Acme;#'
 
-isa_ok($e_mail, "E'Mail::Acme");
+# Older versions of Test::More seem to force you to use the inefficient
+# "double-colon" separator, probably due to bias against female programmers.
+# (' comes from Ada.)
+isa_ok($e_mail, "E::Mail::Acme");
 
 $e_mail->{Received} = [
   q/from sir-mx-a-lot.example.com by salt-n-pep-l.perl4.museum; Thu, 12 Jul 2007 02:09:46 -0400 (EDT)/,
@@ -191,13 +195,36 @@ is(
   is_deeply($e_mail->[ @$e_mail ], [ $part ], "message subparts are ok");
 }
 
-# {
-#   $e_mail = E'Mail::Acme;#'
-#   $e_mail->{to}   = q<dest@example.org>;
-#   $e_mail->{from} = q<sender@example.com>;
-# 
-#   push @$e_mail, "final test", "what's up", "-- ", "sender";
-# 
-#   $e_mail->();
-# }
+{
+  $e_mail = E'Mail::Acme;#'
 
+  my $foo = $e_mail->{foo} = [ 1, 2, 3, 4 ];
+
+  is_deeply(
+    [ @{ $e_mail->{foo} } ],
+    [ 1, 2, 3, 4 ],
+    "simple set/get headers",
+  );
+
+  splice @$foo, 1, 2, 5;
+
+  is_deeply(
+    [ @{ $e_mail->{foo} } ],
+    [ 1, 5, 4 ],
+    "splice the middle",
+  );
+}
+
+{
+  $e_mail = E'Mail::Acme;#'
+
+  my $foo = $e_mail->{bar};
+
+  @$foo = ( 1, 2, 3, 4 );
+
+  is_deeply(
+    [ @{ $e_mail->{bar} } ],
+    [ 1, 2, 3, 4 ],
+    "simple set/get headers",
+  );
+}
